@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>KPSS CALCULATOR</title>
+    </head>
+    <body>
+        <h1>KPSS Hesap Makinesi</h1>
+        
+        <form name = "main">
+            <h2>Genel Yetenek</h2>
+            <br>
+            <label>Dogru Sayisi</label>
+            <input type = "number" name = "genelyetenekdogrusayisi" id = "genelyetenekdogrusayisi" placeholder="Ornek: 60" required>
+            <br>
+            <label>Yanlis Sayisi</label>
+            <input type = "number" name = "genelyetenekyanlissayisi" id = "genelyetenekyanlissayisi" placeholder="Ornek: 0" required>
+            <br>
+            <h2>Egitim Bilimleri</h2>
+            <br>
+            <input type = "number" name = "egitimbirimleridogrusayisi" id = "egitimbirimleridogrusayisi" placeholder="Ornek: 60" required>
+            <br>
+            <input type = "number" name = "egitimbirimleriyanlissayisi" id = "egitimbirimleriyanlissayisi" placeholder="Ornek: 0" required>
+            <br>
+            <h2>Genel Kultur</h2>
+            <br>
+            <input type = "number" name = "genelkulturdogrusayisi" id = "genelkulturdogrusayisi" placeholder="Ornek: 60" required>
+            <br>
+            <input type = "number" name = "genelkulturyanlissayisi" id = "genelkulturyanlissayisi" placeholder="Ornek: 0" required>
+            <br>
+            <h2>OABT</h2>
+            <br>
+            <input type = "number" name = "oabtdogrusayisi" id = "oabtdogrusayisi" placeholder="Ornek: 60" required>
+            <br>
+            <input type = "number" name = "oabtyanlissayisi" id = "oabtyanlissayisi" placeholder="Ornek: 0" required>
+            <br>
+            <br>
+            <input type = "button" value = "Hesapla!" onclick = "islem()">
+            <br>
+            <label>Sonuc</label>
+            <input type = "text" name = "sonuctext">
+        </form>
+
+         <script>
+
+                function islem(){
+
+
+                    /*
+                    1 soru 1 puan ise her dogru + 1
+                    4 yanlis -1 puan ise her 4 yanlis -1 ediyor
+                     */
+
+                     //variableleri tanimlayalim
+
+                    var genelkultur = {
+                        dogrusayisi : document.main.genelkulturdogrusayisi.value,
+                        yanlissayisi : document.main.genelkulturyanlissayisi.value
+                    }
+                    // obje kullanmak daha mantikli cunku ayni durumun degerleri
+                    
+                    var genelyetenek = {
+                        dogrusayisi : document.main.genelyetenekdogrusayisi.value,  
+                        yanlissayisi : document.main.genelyetenekyanlissayisi.value
+                    }
+
+                    // az daha obje aticam
+
+                    var egitimbirimleri = {
+                        dogrusayisi : document.main.egitimbirimleridogrusayisi.value,
+                        yanlissayisi : document.main.egitimbirimleriyanlissayisi.value
+                    }
+
+                    var oabt = {
+                        dogrusayisi : document.main.oabtdogrusayisi.value,
+                        yanlissayisi : document.main.oabtyanlissayisi.value
+                    }
+
+                    // olç biç böl ahahah
+                    var genelkulturnet = genelkultur.dogrusayisi - genelkultur.yanlissayisi/4 
+                    var egitimbirimlerinet = egitimbirimleri.dogrusayisi - egitimbirimleri.yanlissayisi/4
+                    var genelyeteneknet = genelyetenek.dogrusayisi - genelyetenek.yanlissayisi/4
+                    var oabtnet = oabt.dogrusayisi - oabt.yanlissayisi/4
+                    
+                    document.main.sonuctext.value = `Genel Kultur : ${genelkulturnet}, Oabt : ${oabtnet} Egitim Bilimleri : ${egitimbirimlerinet}, Genel Yetenek : ${genelyeteneknet}`
+                        // sonuc Genel Kultur : 45, Oabt : 45 Egitim Bilimleri : 45, Genel Yetenek : 45
+                }
+        </script>
+        
+    </body>
+</html>
